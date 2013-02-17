@@ -1,0 +1,19 @@
+.splash
+  .splash_inner
+    .row
+      .twelve.columns
+        %h1 tppl is peer to peer skill sharing evolved
+        .row
+          .eight.columns.offset-by-one
+            .row
+            %br
+              %form{ :method => 'post', :action => '/login'}
+                .four.mobile-one.columns
+                  %label{ :class => 'right inline'} Username
+                .eight.mobile-three.columns
+                  %input{ :type => 'text', :name => 'username'}
+                .four.mobile-one.columns
+                  %label{ :class => 'right inline'} Password
+                .eight.mobile-three.columns
+                  %input{ :type => 'password', :name => 'password'}
+                  %button{ :type=> 'submit', :class => 'button'} Submit

@@ -1,0 +1,8 @@
+= render :partial => 'members/subhead'
+
+.row
+  .twelve.columns.card
+    %h4 Your classmates need help with the following. How can you help?
+    %h2
+      - @weaknesses.each do |s|
+        = link_to(s.name, s)

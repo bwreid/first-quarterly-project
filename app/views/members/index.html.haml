@@ -1,0 +1,18 @@
+= render :partial => 'subhead'
+.row
+  - @members.each do |member|
+    - if member.id != $user.id
+      .four.columns.carriage
+        .card
+          .index_crop
+            = link_to(image_tag(member.photo), member)
+          .card_details
+            %p
+              %span{ :class => 'title'}= "#{member.full_name} - #{pluralize(member.recommendations.count, 'recommendation')}"
+              = truncate(member.description, :length => 85)
+            %h6= "I can help with..." if member.strengths.length > 0
+            - member.strengths.each do |strength|
+              %span{ :class => 'success label' }= strength.name
+            %h6= "I'd like help with..." if member.weaknesses.length > 0
+            - member.weaknesses.each do |weakness|
+              %span{ :class => 'secondary label' }=weakness.name

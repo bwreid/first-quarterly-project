@@ -1,0 +1,211 @@
+/* Artfully masterminded by ZURB  */
+
+/* --------------------------------------------------
+   Table of Contents
+-----------------------------------------------------
+:: Header & Sub Header Styles
+:: Image Cropping
+:: Card Styles
+:: Profile Heading Styles
+:: General Graphics / Splash
+
+*/
+
+/* -----------------------------------------
+   Header & Sub Header Styles
+----------------------------------------- */
+
+.hero_sub {
+    width: 100%;
+    margin-bottom: 35px;
+  /*background-color: #1F63BF;*/
+    box-shadow: inset 0px 2px 8px #333;
+    background: url(/assets/st_hero.jpg) no-repeat fixed bottom;
+}
+
+.hero_sub span {
+    display: block;
+    padding: 50px 0;
+}
+
+.hero_sub h1 {
+    text-align: center;
+    color: #fff;
+}
+
+.hero_sub h6 {
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+}
+
+/* -----------------------------------------
+   Image Cropping
+----------------------------------------- */
+
+.index_crop {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.index_crop img {
+    width: 100%;
+    opacity: 0.85;
+}
+
+.index_crop img:hover {
+    opacity: 1;
+}
+
+.carriage:nth-child(3n+1) {
+    clear: both;
+}
+
+
+/* -----------------------------------------
+   Card Styles
+----------------------------------------- */
+
+.main {
+    background: #efefef;
+    padding-bottom: 35px;
+}
+
+.card {
+    background-color: #fff;
+    margin: 5px 15px 10px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.title {
+    color: #444;
+    font-weight: bold;
+}
+
+.card_details {
+    padding: 5px 20px 25px;
+}
+
+.card_details p {
+    font-size: 12px;
+    color: #a2a2a2;
+    padding: 10px 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.card_details h3 {
+    margin-top: 32px;
+}
+
+.card_details h4 {
+    text-align: center;
+}
+
+.card_details h5 {
+    color: #444;
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.card_details h6 {
+    color: #333;
+    margin: 15px 0 10px;
+}
+
+.card_details span.success a {
+    color: #fff;
+}
+
+/* -----------------------------------------
+   Profile Heading Style
+----------------------------------------- */
+
+.profile_crop {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    margin: 20px auto;
+    border: 2px solid #efefef;
+}
+
+.profile_crop img {
+    width: 100%;
+}
+
+.panel {
+    background-color: #fff;
+}
+
+.thumb {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border: 1px solid #efefef;
+}
+
+.thumb img {
+    height: 100%;
+}
+
+i {
+    color: #444;
+}
+
+.counter {
+    position: relative;
+    top: -10px;
+    left: -30px;
+}
+
+.skill_checkboxes {
+    display: inline-block;
+    margin: 5px;
+    padding: 2px 3px;
+}
+
+.skill_checkboxes:hover {
+    background-color: #efefef;
+}
+
+/* -----------------------------------------
+   General Graphics / Splash
+----------------------------------------- */
+
+.gradient {
+    background: rgb(239,239,239);
+ /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(239,239,239,1) 0%, rgba(255,255,255,1) 65%);
+ /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(65%,rgba(255,255,255,1)));
+ /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 65%);
+ /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 65%);
+ /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 65%);
+ /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(239,239,239,1) 0%,rgba(255,255,255,1) 65%);
+ /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#ffffff',GradientType=0 );
+ /* IE6-9 */
+}
+
+.splash {
+    padding: 250px 0;
+    width: 100%;
+    background: url(/assets/hero.jpg) no-repeat fixed center;
+    position: absolute;
+    z-index: 1;
+}
+
+.splash_inner {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.splash h1, .splash label {
+    color: #fff;
+}

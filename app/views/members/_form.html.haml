@@ -1,0 +1,28 @@
+= form_for @member do |f|
+  %input{ :name => :id, :type => 'hidden', :value => @member.id }
+  = f.label :first
+  = f.text_field :first
+  = f.label :last
+  = f.text_field :last
+  = f.label :photo, "Image URL"
+  = f.text_field :photo
+  = f.label :description, "About you"
+  = f.text_area :description, :rows => 3
+  .row
+    .six.columns
+      %fieldset
+        %legend I want help with...
+        - Weakness.order(:name).each do |weakness|
+          %p{ :class => 'left skill_checkboxes' }
+            = weakness.name
+            = check_box_tag 'member[weakness_ids][]', weakness.id, weakness.in?(@member.weaknesses)
+
+    .six.columns
+      %fieldset
+        %legend I can help with...
+        - Strength.order(:name).each do |strength|
+          %p{ :class => 'left skill_checkboxes' }
+            = strength.name
+            = check_box_tag 'member[strength_ids][]', strength.id, strength.in?(@member.strengths)
+
+  = f.submit 'Submit', :class => 'button'

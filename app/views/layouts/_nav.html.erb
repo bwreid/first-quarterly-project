@@ -1,0 +1,43 @@
+  <!-- Header and Nav -->
+
+  <div class="fixed contain-to-grid">
+    <nav class="top-bar">
+      <ul>
+        <li class="name"><h1><%= link_to("tppl", logout_path) %></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+      <% if $user != nil %>
+      <section>
+        <ul class="left">
+          <li><%= link_to("My Page", $user) %></li>
+        </ul>
+        <ul class="left">
+          <li><%= link_to("My Class", members_path) %></li>
+        </ul>
+        <ul class="left">
+          <li class="has-dropdown">
+            <%= link_to("I Want Help With...", strengths_path) %>
+            <ul class="dropdown">
+              <% $user.weaknesses.each do |link| %>
+                  <li><%= link_to(link.name, Strength.where(:name => link.name).first) %></li>
+              <% end %>
+
+            </ul>
+          </li>
+        </ul>
+        <ul class="left">
+          <li class="has-dropdown"><%= link_to("I Can Help With...", weaknesses_path) %>
+            <ul class="dropdown">
+
+              <% $user.strengths.each do |link| %>
+                  <li><%= link_to(link.name, Weakness.where(:name => link.name).first) %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    <% end %>
+    </nav>
+  </div>
+
+  <!-- End Header and Nav -->

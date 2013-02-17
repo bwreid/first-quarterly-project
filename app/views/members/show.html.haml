@@ -1,0 +1,96 @@
+= render :partial => 'subhead'
+.row
+  .twelve.columns.carriage
+    .row.card
+      .four.columns
+        .profile_crop
+          = image_tag(@member.photo)
+      .eight.columns
+        .card_details
+          %h2
+            = @member.full_name
+          = link_to('Edit My Profile', edit_member_path) if $user.id == @member.id
+          %h5= @member.description
+          %p
+            = @member.first
+            has received
+            = pluralize(@member.recommendations.count, 'recommendation')
+          %h6= "I can help with..." if @member.strengths.length > 0
+          - @member.strengths.each do |strength|
+            %span{ :class => 'success label' }= link_to(strength.name, strength)
+          %h6= "I'd like help with..." if @member.weaknesses.length > 0
+          - @member.weaknesses.each do |weakness|
+            %span{ :class => 'secondary label' }=link_to(weakness.name, weakness)
+
+.row{ :style => "padding-top: 20px;"}
+  .twelve.columns
+    .panel
+      - @member.recommendations.each do |rec|
+        %blockquote
+          %p= rec.message
+          %cite= link_to(Member.find(rec.recommender).full_name, Member.find(rec.recommender))
+      - if @member.recommendations.present? == false
+        %p No recommendations yet!
+    - if $user != @member # THIS REMOVES THE MESSAGE BOX IF IT IS THE USER
+      %h5= "Recommend #{@member.first}"
+      %form{ :method => 'post', :action => '/recommendations/new'}
+        %input{ :type => 'text', :name => 'message'}
+        %input{ :type => 'hidden', :name => 'recommender', :value => $user.id }
+        %input{ :type => 'hidden', :name => 'member_id', :value => @member.id }
+        %button{ :class => 'small button'} Recommend!
+
+- if ($user == @member) # THIS REMOVES THE LISTINGS UNLESS IT IS THE USER
+  - if @member.weakness_check.count != 0
+    .row{ :style => "padding-top: 10px;"}
+      %h3 These people can help you:
+      .twelve.columns
+        .panel
+          - Member.order(:first).each do |check|
+            - if (check.username != @member.username)
+              - helper_array = []
+              - check.strengths.each do |str|
+                - helper_array << str.name
+              - if (helper_array & @member.weakness_check).count > 0
+                = link_to(image_tag(check.photo, :class => 'thumb'), check)
+
+- if $user == @member # THIS REMOVES THE MESSAGE BOX IF IT IS NOT THE USER
+  - if @member.messages.present?
+    .row{ :style => "padding-top: 10px;"}
+      %h3 Your messages:
+      - @member.messages.each do |m|
+        .six.columns
+          .panel
+            .row
+              .twelve.columns
+                %h5= m.message
+                - if m.message.exclude?("gmail")
+                  %p
+                    View profile:
+                    = link_to(Member.find(m.from).full_name, Member.find(m.from))
+                    %form{ :method => 'post', :action => '/messages'}
+                      %input{ :type => 'hidden', :name => 'message_id', :value => m.id }
+                      %input{ :type => 'hidden', :name => 'response', :value => 'yes' }
+                      %button{ :class => 'success small button left', :style => "margin-right: 30px;"} Yes
+                    %form{ :method => 'post', :action => '/messages'}
+                      %input{ :type => 'hidden', :name => 'message_id', :value => m.id }
+                      %input{ :type => 'hidden', :name => 'response', :value => 'no' }
+                      %button{ :class => 'small button left'} No
+                - if m.message.include?("gmail")
+                  %form{ :method => 'post', :action => '/messages'}
+                    %input{ :type => 'hidden', :name => 'message_id', :value => m.id }
+                    %input{ :type => 'hidden', :name => 'response', :value => 'no' }
+                    %button{ :class => 'small button left'} Delete
+
+- if $user != @member # THIS REMOVES THE MESSAGE BOX IF IT IS THE USER
+  .row{ :style => "padding-top: 20px;"}
+    .twelve.columns
+      .panel
+        %h5= "Want to message #{@member.first}?"
+        %form{ :method => 'post', :action => '/messages/new'}
+          %input{ :type => 'hidden', :name => 'message', :value => "#{$user.full_name} would like to chat with you! Would you like to share your email?" }
+          %input{ :type => 'hidden', :name => 'from', :value => $user.id }
+          %input{ :type => 'hidden', :name => 'member_id', :value => @member.id }
+          - if @member.messages.map(&:from).include?($user.id)
+            %p= "Your message has been sent! #{@member.first} will respond if available."
+          - else
+            %button{ :class => 'small button'} Request Email

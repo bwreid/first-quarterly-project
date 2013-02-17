@@ -1,0 +1,31 @@
+= render :partial => 'subhead'
+.row
+  - Member.order(:first).each do |member|
+    - if member.weaknesses.map(&:name).uniq.include?(@weakness.name)
+      .twelve.columns.carriage
+        .row.card{ :style => 'margin: 20px 0'}
+          .four.columns
+            .profile_crop
+              = link_to(image_tag(member.photo), member)
+          .eight.columns
+            .card_details
+              %h2= member.full_name
+              %h5= member.description
+              %p
+                = member.first
+                has received
+                = pluralize(member.recommendations.count, 'recommendation')
+              %h6= "I can help with..." if member.strengths.length > 0
+              - member.strengths.each do |strength|
+                %span{ :class => 'success label' }= link_to(strength.name, strength)
+              %h6= "I'd like help with..." if member.weaknesses.length > 0
+              - member.weaknesses.each do |weakness|
+                %span{ :class => 'secondary label' }=link_to(weakness.name, weakness)
+
+  - if Member.all.map(&:strengths).flatten.map(&:name).exclude?(@weakness.name)
+    .twelve.columns.carriage
+      .row.card{ :style => 'margin: 20px 0'}
+        .six.columns.centered
+          %br
+          %h5 Sorry! No one needs help with this now.
+          %br
