@@ -1,8 +1,9 @@
-= render :partial => 'members/subhead'
-
-.row
-  .twelve.columns.card
-    %h4 Your classmates have the following skills. What would you like to get help with today?
-    %h2
-      - @strengths.each do |s|
-        = link_to(s.name, s)
+.splash
+  .splash_inner
+    .row
+      .twelve.columns
+        %h1 What do you need help with today?
+        .row
+          .ten.columns.offset-by-one
+            - @strengths.each do |s|
+              %span= link_to(s.name, s)

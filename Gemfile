@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11' # KEEPS IT AT 3.2.11
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'httparty'
 gem 'pg'

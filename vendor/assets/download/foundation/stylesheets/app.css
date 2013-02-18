@@ -209,3 +209,19 @@ i {
 .splash h1, .splash label {
     color: #fff;
 }
+
+.splash_inner span {
+    font-size: 2em;
+    background-color: #efefef;
+    display: inline-block;
+    margin: 5px 8px;
+    padding: 3px 5px;
+}
+
+.splash_inner span:hover {
+    background-color: #e86726;
+}
+
+.splash_inner a:hover {
+    color: #fff;
+}
