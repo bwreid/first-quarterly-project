@@ -197,10 +197,10 @@ i {
 }
 
 .splash {
-    height: 100%;
+    padding: 250px 0;
     width: 100%;
     background: url(/assets/hero.jpg) no-repeat fixed center;
-    position: relative;
+    position: absolute;
     z-index: 1;
 }
 
