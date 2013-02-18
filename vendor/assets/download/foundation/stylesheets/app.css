@@ -14,6 +14,10 @@
 /* -----------------------------------------
    Header & Sub Header Styles
 ----------------------------------------- */
+html, body {
+    height: 100%;
+}
+
 
 .hero_sub {
     width: 100%;
@@ -193,10 +197,10 @@ i {
 }
 
 .splash {
-    padding: 250px 0;
+    height: 100%;
     width: 100%;
     background: url(/assets/hero.jpg) no-repeat fixed center;
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 
