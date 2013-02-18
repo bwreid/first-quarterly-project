@@ -5,6 +5,7 @@ class AddMembersTable < ActiveRecord::Migration
       t.string :last
       t.string :username
       t.string :password
+      t.integer :classroom_id
       t.text :photo
       t.text :description
       t.timestamps

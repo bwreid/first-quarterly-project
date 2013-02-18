@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(:version => 20130216224237) do
     t.string   "last"
     t.string   "username"
     t.string   "password"
+    t.integer  "classroom_id"
     t.text     "photo"
     t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "classroom_id"
   end
 
   create_table "members_strengths", :id => false, :force => true do |t|
@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(:version => 20130216224237) do
 
   create_table "recommendations", :force => true do |t|
     t.string   "message"
+    t.string   "recommender"
     t.integer  "member_id"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.integer  "recommender", :limit => 2
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "strengths", :force => true do |t|
