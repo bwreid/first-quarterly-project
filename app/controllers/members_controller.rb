@@ -8,14 +8,15 @@ class MembersController < ApplicationController
   end
 
   def create
-    member = Member.where( :first => params[:member]['first'], :last => params[:member]['last'] ).first
+    username_check = params[:member]['first'] + params[:member]['last']
 
-    if (member.strength_check & member.weakness_check).count == 0
+    if Member.where( :username => username_check.downcase ).present?
+      redirect_to(error_path)
+    else
       member = Member.create(params[:member])
+      member.update_attributes( :password => 'welcome', :username => username_check.downcase)
       $classroom_members << member
       redirect_to(member)
-    else
-      redirect_to(error_path)
     end
 
   end
